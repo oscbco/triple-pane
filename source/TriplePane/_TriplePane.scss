@@ -1,0 +1,169 @@
+#appcontent {
+  position: relative;
+  overflow: auto;
+  flex-grow: 1;
+  display: grid;
+  grid-gap: 1px;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background-color: firebrick;
+  .panea, .paneb, panec {
+    overflow: hidden;
+  }
+  .a, .b, .c {
+    // border: 1px solid #333;
+    background: yellow;
+  }
+}
+
+// -------
+//  AREAS
+// -------
+
+%full {
+  grid-row: start / end;
+  grid-column: start / end;
+}
+
+%left {
+  grid-row: start / end;
+  grid-column: start / a;
+}
+
+%right {
+  grid-row: start / end;
+  grid-column: a / end;
+}
+
+%top {
+  grid-row: start / a;
+  grid-column: start / end;
+}
+
+%bottom {
+  grid-row: a / end;
+  grid-column: start / end;
+}
+
+%topRightCorner {
+  grid-row: start / a;
+  grid-column: a / end;
+}
+
+%topLeftCorner {
+  grid-row: start / a;
+  grid-column: start /a;
+}
+
+%bottomRightCorner {
+  grid-row: a / end;
+  grid-column: a / end;
+}
+
+%bottomLeftCorner {
+  grid-row: a / end;
+  grid-column: start / a;
+}
+
+// -------
+//  Mode 1
+// -------
+.m1>.a {
+  @extend %full;
+  overflow: hidden;
+}
+
+// -------
+//  Mode 2
+// -------
+.m2>.a {
+  @extend %left;
+}
+.m2>.b {
+  @extend %right;
+  overflow: hidden;
+}
+
+// -------
+//  Mode 3
+// -------
+.m3>.a {
+  @extend %top;
+}
+.m3>.b {
+  @extend %bottom;
+}
+
+// -------
+//  Mode 4
+// -------
+.m4>.a {
+  @extend %topLeftCorner;
+}
+.m4>.b {
+  @extend %topRightCorner;
+  overflow: hidden;
+}
+.m4>.c {
+  @extend %bottom;
+  overflow: hidden;
+}
+
+// -------
+//  Mode 5
+// -------
+.m5>.a {
+  @extend %left;
+}
+.m5>.b {
+  @extend %topRightCorner;
+  overflow: hidden;
+}
+.m5>.c {
+  @extend %bottomRightCorner;
+  overflow: hidden;
+}
+
+// -------
+//  Mode 6
+// -------
+.m6>.a {
+  @extend %top;
+}
+.m6>.b {
+  @extend %bottomRightCorner;
+    overflow: hidden;
+}
+.m6>.c {
+  @extend %bottomLeftCorner;
+}
+
+// -------
+//  Mode 7
+// -------
+.m7>.a {
+  @extend %topLeftCorner;
+}
+.m7>.b {
+  @extend %right;
+  overflow: hidden;
+}
+.m7>.c {
+  @extend %bottomLeftCorner;
+}
+
+.panex {
+  // background: tomato;
+  // transition: 2s;
+}
+
+.paney {
+  // background: greenyellow;
+  // transition: 2s;
+}
+
+.panez {
+  // background: blueviolet;
+  // transition: 2s;
+}

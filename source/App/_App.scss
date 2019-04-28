@@ -1,0 +1,34 @@
+:global {
+  body {
+    font-family: sans;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+.section {
+  background: #333;
+  color: #DDD;
+  padding: 10px;
+  text-align: center;
+  width: 50%;
+  display: inline-block;
+  height: 150px;
+}
+
+.bio {
+  background: #333;
+  color: #DDD;
+}
+
+.dino {
+  background: #FFF;
+  color: #333;
+  border: 1px solid #333;
+}
+

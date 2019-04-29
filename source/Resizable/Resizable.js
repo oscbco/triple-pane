@@ -1,18 +1,96 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styles from './_Resizable.scss';
 
 export default class Resizable extends PureComponent {
   static propTypes = {
     className: PropTypes.string.isRequired,
     handlers: PropTypes.array.isRequired,
-    size: PropTypes.func.isRequired,
-    parentId: PropTypes.string.isRequired
+    size: PropTypes.func.isRequired
   };
 
   static defaultProps = {
     handlers: []
   };
+
+  handlerStyles = {
+    e: {
+      background: 'transparent',
+      position: 'absolute',
+      width: '10px',
+      height: '100%',
+      right: '-5px',
+      cursor: 'col-resize',
+      zIndex: '6001'
+    },
+    s: {
+      background: 'transparent',
+      position: 'absolute',
+      width: '100%',
+      height: '10px',
+      bottom: '-5px',
+      left: '0px',
+      cursor: 'ns-resize',
+      zIndex: '6002'
+    },
+    w: {
+      background: 'transparent',
+      position: 'absolute',
+      width: '10px',
+      height: '100%',
+      left: '-5px',
+      cursor: 'col-resize',
+      zIndex: '6003'
+    },
+    n: {
+      background: 'transparent',
+      position: 'absolute',
+      width: '100%',
+      height: '10px',
+      top: '-5px',
+      cursor: 'row-resize',
+      zIndex: '6004'
+    },
+    nw: {
+      background: 'transparent',
+      position: 'absolute',
+      width: '10px',
+      height: '10px',
+      top: -'5px',
+      left: -'5px',
+      cursor: 'nw-resize',
+      zIndex: '6005'
+    },
+    ne: {
+      background: 'transparent',
+      position: 'absolute',
+      width: '10px',
+      height: '10px',
+      top: '-5px',
+      right: '-5px',
+      cursor: 'nesw-resize',
+      zIndex: '6006'
+    },
+    sw: {
+      background: 'transparent',
+      position: 'absolute',
+      width: '10px',
+      height: '10px',
+      left: '-5px',
+      bottom: '-5px',
+      cursor: 'nesw-resize',
+      zIndex: '6007'
+    },
+    se: {
+      background: 'transparent',
+      position: 'absolute',
+      width: '10px',
+      height: '10px',
+      bottom: '-5px',
+      right: '-5px',
+      cursor: 'nwse-resize',
+      zIndex: '6008'
+    }
+  }
 
   constructor (props) {
     super(props);
@@ -35,8 +113,8 @@ export default class Resizable extends PureComponent {
       height: this.props.size().height
     };
     const parentSize = {
-      width: document.getElementById(this.props.parentId).offsetWidth,
-      height: document.getElementById(this.props.parentId).offsetHeight
+      width: this.resizableRef.current.parentNode.offsetWidth,
+      height: this.resizableRef.current.parentNode.offsetHeight
     };
     this.bindedMouseMove = this.mouseMove.bind(this, handle, clientPos, initialSize, parentSize);
     document.addEventListener('mousemove', this.bindedMouseMove);
@@ -135,11 +213,14 @@ export default class Resizable extends PureComponent {
 
   render () {
     const handlerElements = this.props.handlers.map((handler) =>
-      <div key={handler} className={styles[handler]} onMouseDown={this.mouseDown.bind(this, handler)} />
+      <div key={handler} style={this.handlerStyles[handler]} onMouseDown={this.mouseDown.bind(this, handler)} />
     );
 
     return (
-      <div ref={this.resizableRef} className={this.props.className + ' ' + styles.resizable}>
+      <div ref={this.resizableRef} className={this.props.className} style={{
+        position: 'relative',
+        display: 'inline-block'
+      }}>
         {handlerElements}
         {this.props.children}
       </div>

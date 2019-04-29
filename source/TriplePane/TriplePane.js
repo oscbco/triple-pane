@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import Resizable from './Resizable/Resizable';
+import Resizable from '../Resizable/Resizable';
 
 import styles from './_TriplePane.scss';
 export default class TriplePane extends PureComponent {
@@ -26,7 +26,8 @@ export default class TriplePane extends PureComponent {
   getGrid = () => {
     return {
       gridTemplateColumns: '[start]' + this.state.width + 'px [a] auto [end]',
-      gridTemplateRows: '[start]' + this.state.height + 'px [a] auto [end]'
+      gridTemplateRows: '[start]' + this.state.height + 'px [a] auto [end]',
+      ...this.props.style
     };
   }
 
@@ -67,8 +68,8 @@ export default class TriplePane extends PureComponent {
   render () {
     const { mode, areaa, areab, areac } = this.props;
     return (
-      <div id={styles.appcontent} className={styles[mode]} style={this.getGrid()}>
-        <Resizable className={styles[areaa]} handlers={this.handlers[mode][areaa]} size={this.size} parentId={styles.appcontent} debouncingFunction={this.props.debouncingFunction}>
+      <div className={styles.appcontent + ' ' + styles[mode]} style={this.getGrid()}>
+        <Resizable className={styles[areaa]} handlers={this.handlers[mode][areaa]} size={this.size} debouncingFunction={this.props.debouncingFunction}>
           {this.props.panea}
         </Resizable>
         {mode !== 'm1' ? <Resizable className={styles[areab]} handlers={this.handlers[mode][areab]} size={this.size} parentId={styles.appcontent} debouncingFunction={this.props.debouncingFunction}>

@@ -1,7 +1,7 @@
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+var { CleanWebpackPlugin } = require('clean-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
 
@@ -48,7 +48,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              camelCase: true
+              localsConvention: 'camelCase',
             }
           },
           {

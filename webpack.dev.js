@@ -98,7 +98,7 @@ module.exports = {
       chunkFilename: 'css/[id].css'
     }),
     new HtmlWebpackPlugin({
-      title: '@oscbco/triple-pane',
+      title: '@oscbco/resizable-pane',
       template: './index.html'
     }),
     new webpack.HotModuleReplacementPlugin()

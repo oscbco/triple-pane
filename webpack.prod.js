@@ -11,12 +11,11 @@ module.exports = {
     path.join(__dirname, 'source', 'TriplePane', 'TriplePane.js')
   ],
   output: {
-    filename: 'build/index.js',
-    chunkFilename: 'build/index.js',
+    filename: 'index.js',
+    chunkFilename: 'index.js',
     path: path.resolve(__dirname),
     publicPath: './',
-    library: 'TriplePane',
-    // libraryExport: 'default',
+    library: 'ResizablePanes',
     libraryTarget: 'umd'
   },
   mode: 'production',
@@ -48,7 +47,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localsConvention: 'camelCase',
+              localsConvention: 'camelCase'
             }
           },
           {
@@ -101,8 +100,8 @@ module.exports = {
       sourceMap: false
     }),
     new MiniCssExtractPlugin({
-      filename: 'build/css/[name].css',
-      chunkFilename: 'build/css/[id].css'
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     }),
     new BundleAnalyzerPlugin()
   ],

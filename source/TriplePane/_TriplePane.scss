@@ -12,6 +12,7 @@
     overflow: hidden;
   }
   .a, .b, .c {
+    position: relative;
   }
 }
 
@@ -154,14 +155,17 @@
 .panex {
   // background: tomato;
   // transition: 2s;
+  color: inherit;
 }
 
 .paney {
   // background: greenyellow;
   // transition: 2s;
+  color: inherit;
 }
 
 .panez {
   // background: blueviolet;
   // transition: 2s;
+  color: inherit;
 }

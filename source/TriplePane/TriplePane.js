@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 
 import Resizable from '../Resizable/Resizable';
 
-import styles from './_TriplePane.scss';
+import css from './_TriplePane.scss';
+
 export default class TriplePane extends PureComponent {
   constructor (props) {
     super(props);
@@ -65,20 +66,36 @@ export default class TriplePane extends PureComponent {
     }
   };
 
+  shouldRender = (mode, paneArea) => {
+    if (mode === 'm1') {
+      return paneArea === 'a';
+    } else if (mode === 'm2' || mode === 'm3') {
+      return paneArea !== 'c';
+    } else {
+      return true;
+    }
+  };
+
   render () {
-    const { mode, areaa, areab, areac } = this.props;
+    const { mode, areaa, areab, areac, paneClassName, id } = this.props;
     return (
-      <div className={styles.appcontent + ' ' + styles[mode]} style={this.getGrid()}>
-        <Resizable className={styles[areaa]} handlers={this.handlers[mode][areaa]} size={this.size} debouncingFunction={this.props.debouncingFunction}>
+      <div id={id} className={css.appcontent + ' ' + css[mode]} style={this.getGrid()}>
+        {this.shouldRender(mode, areaa) ? <Resizable className={css[areaa] + ' ' + paneClassName} handlers={this.handlers[mode][areaa]} size={this.size} debouncingFunction={this.props.debouncingFunction}>
           {this.props.panea}
-        </Resizable>
-        {mode !== 'm1' ? <Resizable className={styles[areab]} handlers={this.handlers[mode][areab]} size={this.size} parentId={styles.appcontent} debouncingFunction={this.props.debouncingFunction}>
+        </Resizable> : null}
+        {this.shouldRender(mode, areab) ? <Resizable className={css[areab] + ' ' + paneClassName} handlers={this.handlers[mode][areab]} size={this.size} parentId={css.appcontent} debouncingFunction={this.props.debouncingFunction}>
           {this.props.paneb}
         </Resizable> : null}
-        {(mode !== 'm1' && mode !== 'm2' && mode !== 'm3') ? <Resizable className={styles[areac]} handlers={this.handlers[mode][areac]} size={this.size} parentId={styles.appcontent} debouncingFunction={this.props.debouncingFunction}>
+        {this.shouldRender(mode, areac) ? <Resizable className={css[areac] + ' ' + paneClassName} handlers={this.handlers[mode][areac]} size={this.size} parentId={css.appcontent} debouncingFunction={this.props.debouncingFunction}>
           {this.props.panec}
         </Resizable> : null}
       </div>
     );
   }
 }
+
+TriplePane.defaultProps = {
+  id: '',
+  panec: null,
+  areac: 'c'
+};

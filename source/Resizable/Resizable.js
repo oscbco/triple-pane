@@ -217,10 +217,7 @@ export default class Resizable extends PureComponent {
     );
 
     return (
-      <div ref={this.resizableRef} className={this.props.className} style={{
-        position: 'relative',
-        display: 'inline-block'
-      }}>
+      <div ref={this.resizableRef} className={this.props.className}>
         {handlerElements}
         {this.props.children}
       </div>

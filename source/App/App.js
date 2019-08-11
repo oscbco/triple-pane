@@ -1,7 +1,6 @@
 import React from 'react';
 
 import TriplePane from '../TriplePane/TriplePane';
-// import styles from './_App.scss';
 
 export default function App () {
   const panea = <div style={{ backgroundColor: 'lightblue', height: '100%' }}>A</div>;
@@ -23,12 +22,13 @@ export default function App () {
     panea,
     paneb,
     panec,
-    areaa: 'a',
+    areaa: 'c',
     areab: 'b',
-    areac: 'c',
+    areac: 'a',
     width: 100,
     height: 100,
-    mode: 'm7',
+    mode: 'm4',
+    paneClassName: 'abc',
     style: {
       gridGap: '5px'
     },

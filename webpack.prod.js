@@ -103,7 +103,9 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
-    new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static'
+    })
   ],
   externals: {
     react: {
